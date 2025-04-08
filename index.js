@@ -1,10 +1,29 @@
 const images = [
-    "./image/chicken.png",
-    "./image/crayfish.jpg",
-    "./image/fish.jpg",
-    "./image/khlouk.avif",
-    "./image/tiger.jpg",
-    "./image/krabbe.jpg"
+    {
+        name : "មាន់",
+        image:  "./image/chicken.png",
+    },
+    {
+        name : "បង្ករ",
+        image: "./image/crayfish.jpg",
+    },
+    {
+        name : "ត្រី",
+        image: "./image/fish.jpg",",
+    },
+    {
+        name : "ឃ្លោក",
+        image: "./image/khlouk.avif",
+    },
+    {
+        name : "ខ្លា",
+        image: "./image/tiger.jpg",
+    },
+     {
+        name : "ក្ដាម",
+        image: "./image/krabbe.jpg"
+    },
+   
   ];
   
 const img = document.getElementById('image')
@@ -37,7 +56,7 @@ img.src = './image/khla_khlouk.png'
       setTimeout(() => {
         const randomIndex = Math.floor(Math.random() * images.length);
         // const img = document.createElement('img');
-        img.src = images[randomIndex];
+        img.src = images[randomIndex].image;
         img.alt = 'Random Image';
         const endTime = Date.now();
         imageContainer.innerHTML = '';

@@ -57,7 +57,8 @@ img.src = './image/khla_khlouk.png'
         const randomIndex = Math.floor(Math.random() * images.length);
         // const img = document.createElement('img');
         img.src = images[randomIndex].image;
-        img.alt = 'Random Image';
+        coutdown.textCotent = images[randomIndex].name;
+        img.alt = images[randomIndex].name;
         const endTime = Date.now();
         imageContainer.innerHTML = '';
         imageContainer.appendChild(img);

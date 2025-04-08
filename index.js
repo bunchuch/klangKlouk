@@ -9,7 +9,7 @@ const images = [
     },
     {
         name : "ត្រី",
-        image: "./image/fish.jpg",",
+        image: "./image/fish.jpg",
     },
     {
         name : "ឃ្លោក",
@@ -35,9 +35,9 @@ img.src = './image/khla_khlouk.png'
       const timeinfo = document.getElementById('timeInfo');
       const countdown = document.getElementById('countdown')
       const startTime = Date.now();
-      
-      const delaySeconds = 10;
-
+      const showName = document.getElementById('showName')
+      const delaySeconds = 7;
+      showName.innerHTML = ''
       img.src = './image/loading.gif'
 
       let remaining = delaySeconds;
@@ -57,12 +57,12 @@ img.src = './image/khla_khlouk.png'
         const randomIndex = Math.floor(Math.random() * images.length);
         // const img = document.createElement('img');
         img.src = images[randomIndex].image;
-        coutdown.textCotent = images[randomIndex].name;
         img.alt = images[randomIndex].name;
         const endTime = Date.now();
         imageContainer.innerHTML = '';
         imageContainer.appendChild(img);
+        showName.innerHTML = images[randomIndex].name;
         const elapsedSeconds = ((endTime - startTime) / 1000).toFixed(2);
        tim.textContent = `Image loaded in ${elapsedSeconds} seconds.`;
-      }, 10000); // 1000ms = 1 second delay
+      }, 7000); // 1000ms = 1 second delay
     }

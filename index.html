@@ -13,6 +13,7 @@
     img {
       max-width: 400px;
       margin-top: 20px;
+      border-radius: 10px;
     }
     button {
       padding: 10px 20px;
@@ -22,20 +23,20 @@
   </style>
   
 </head>
-<body>
-  <!-- <h1>Random Image Generator</h1>
-  <button onclick="showRandomImage()">Show Random Image</button>
-  <div>
-    <img id="randomImage" src=""
-     alt="Your random image will appear here">
-  </div> -->
-  <p id="timeInfo"></p>
-  <h1>Random Image Display</h1>
+<body style="background-color: rgb(214, 214, 16);">
+
+  <h1>លេងខ្លាឃ្លោក</h1>
+  <div id="image-container"></div>
+  <img 
+  width="200" height="200" id="image" src=""/>
+  <h1 id="countdown"></h1>
   <button 
   onclick="showRandomImage()">
-  Show Random Image</button>
-  <div id="image-container"></div>
-  <img id="image" src=""/>
+  ចាប់ផ្ដើម</button>
+  <button 
+  onclick="showRandomImage()">
+  លេងម្ដងទៀត</button>
+  <div id="timeInfo"></div>
   <script src="index.js"></script>
 </body>
 </html>

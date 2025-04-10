@@ -26,43 +26,90 @@ const images = [
    
   ];
   
-const img = document.getElementById('image')
+const img = document.getElementById('image');
 img.src = './image/khla_khlouk.png'
+const loadingImage = document.getElementById('loadingImage');
+const imageContainer = document.getElementById('image-container');
+const timeinfo = document.getElementById('timeInfo');
+const displayCountdown = document.getElementById('countdown')
+const showName = document.getElementById('showName')
+const imageCountInput = document.getElementById('imageCount');
+const timeCountInput = document.getElementById('timeCount');
+const buttonStart = document.getElementById('startBtn');
+function getRandomImages(count){
+  const shuffled = [...images].sort(()=> 0.5 - Math.random());
+  return shuffled.slice(0 ,count)
+}
 
 
- function showRandomImage() {
-      const imageContainer = document.getElementById('image-container');
-      const timeinfo = document.getElementById('timeInfo');
-      const countdown = document.getElementById('countdown')
-      const startTime = Date.now();
-      const showName = document.getElementById('showName')
-      const delaySeconds = 7;
-      showName.innerHTML = ''
-      img.src = './image/loading.gif'
+function startBtn(){
+  const count = parseInt(imageCountInput.value);
+  const time = parseInt(timeCountInput.value);
+  buttonStart.disabled = true;
+  img.src = "./image/loading.gif"
+  if (count < 1 || count > images.length) {
+    alert(`Please enter a number between 1 and ${images.length}`);
+    return;
+  }
 
-      let remaining = delaySeconds;
-      countdown.textContent = ` ${remaining}`;
+  //imageContainer.innerHTML = '';
+  displayCountdown.textContent = `${time}`;
 
-      const interval = setInterval(() => {
-        remaining--;
-        if (remaining > 0) {
-          countdown.textContent = ` ${remaining}`;
-        } else {
-          clearInterval(interval);
-          countdown.textContent = ''; // clear countdown text
-        }
-      }, 1000);
-
-      setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        // const img = document.createElement('img');
-        img.src = images[randomIndex].image;
-        img.alt = images[randomIndex].name;
-        const endTime = Date.now();
-        imageContainer.innerHTML = '';
-        imageContainer.appendChild(img);
-        showName.innerHTML = images[randomIndex].name;
-        const elapsedSeconds = ((endTime - startTime) / 1000).toFixed(2);
-       tim.textContent = `Image loaded in ${elapsedSeconds} seconds.`;
-      }, 7000); // 1000ms = 1 second delay
+  let timer = time;
+  const interval = setInterval(() => {
+    timer--;
+    displayCountdown.textContent = `${timer}`;
+    if (timer <= 0) {
+      clearInterval(interval);
+      img.src = "./image/khla_khlouk.png"
+      displayCountdown.textContent = "🎉🎊";
+      const randomImages = getRandomImages(count);
+      renderImages(randomImages);
+      loadingImage.src = ""
+      buttonStart.disabled = false;
     }
+  }, 1000);
+
+buttonStart.disabled = false;
+      //img.src = "./image/khla_khlouk.png"
+
+}
+
+
+function renderImages(images){
+  imageContainer.innerHTML = '';
+  images.forEach(image => {
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.style.display = 'inline-block';
+    wrapper.style.textAlign = 'center';
+    wrapper.style.margin = '10px';
+
+    // Create image
+    const img = document.createElement('img');
+    img.src = image.image;
+    img.width = 90;
+    img.height = 90;
+    img.style.borderRadius = '8px';
+    img.style.border = '1px solid #ccc';
+    img.style.display = 'block';
+    img.style.marginBottom = '5px';
+
+    // Create title
+    const title = document.createElement('p');
+    title.textContent = image.name;
+    title.style.margin = '0';
+    title.style.fontSize = '14px';
+
+    // Append image and title to wrapper
+    wrapper.appendChild(img);
+    wrapper.appendChild(title);
+
+    // Append wrapper to container
+    imageContainer.appendChild(wrapper);
+  });
+}
+
+
+
+
